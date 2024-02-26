@@ -48,7 +48,7 @@ If you want to download the code and run it locally on your computer. Here are t
 git clone https://github.com/sarimhasan/React-Todo-App.git
 ```
 
-2. Open a terminal in the same directory as your files directory
+2. Then cd into the new repo folder
 3. Install all the npm dependencies
 
 ```
