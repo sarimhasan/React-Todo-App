@@ -7,6 +7,8 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
+  const date = new Date();
+
   function saveToLS() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
@@ -76,7 +78,7 @@ function App() {
             </button>
           </div>
 
-          <p className="text-center m-4">2/21/2024, 7:50:50 PM</p>
+          <p className="text-center m-4">{date.toLocaleString()}</p>
 
           {todos.map((todo, index) => {
             return (
