@@ -7,6 +7,18 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
+  function saveToLS() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+
+  useEffect(() => {
+    let todoString = localStorage.getItem("todos");
+    if (todoString) {
+      let todosFromLs = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todosFromLs);
+    }
+  }, []);
+
   function handleTextField(e) {
     setNewTodo(e.target.value);
   }
@@ -16,6 +28,8 @@ function App() {
       const newTodoItem = { id: todos.length, newTodo, isCompleted: false };
       setTodos([...todos, newTodoItem]);
       setNewTodo("");
+
+      saveToLS();
     }
   }
 
@@ -23,11 +37,15 @@ function App() {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
+
+    saveToLS();
   }
 
   function handleDelete(index) {
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
+
+    saveToLS();
   }
 
   return (
